@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SensorGrid } from "@/app/components/SensorGrid";
+import { MouseGlow } from "@/app/components/MouseGlow";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">
         <SensorGrid />
+        <MouseGlow />
         {children}
       </body>
     </html>
