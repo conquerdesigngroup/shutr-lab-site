@@ -22,20 +22,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Aurora blob keyframes — see Aurora.tsx */
-@keyframes aurora-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(80px, -40px) scale(1.15); }
-  66%      { transform: translate(-40px, 60px) scale(0.95); }
-}
-@keyframes aurora-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(-90px, 50px) scale(1.2); }
-}
-@keyframes aurora-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40%      { transform: translate(70px, -60px) scale(0.9); }
-  75%      { transform: translate(-60px, 40px) scale(1.1); }
+/* AF point fire keyframes — see SensorGrid.tsx
+   Brief flash + soft fade, then long quiet for the rest of the loop. */
+@keyframes af-fire {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  4%       { opacity: 1; transform: scale(1.15); }
+  10%      { opacity: 0.9; transform: scale(1); }
+  25%      { opacity: 0.4; transform: scale(1); }
+  40%      { opacity: 0; transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
