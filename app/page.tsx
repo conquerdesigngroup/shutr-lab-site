@@ -1,4 +1,6 @@
 import { DownloadIcon } from "@/app/components/DownloadIcon";
+import { ShutrWordmark } from "@/app/components/ShutrWordmark";
+import { ShutrMark } from "@/app/components/ShutrMark";
 
 interface ReleaseAsset {
   name: string;
@@ -42,10 +44,7 @@ export default async function Home() {
     <>
       <main className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 flex-1">
         <header className="mb-14">
-          <span className="inline-flex items-center gap-2.5 text-xs font-extrabold uppercase tracking-[0.18em] text-paper">
-            <span className="size-2.5 rounded-sm bg-accent shadow-[0_0_16px_rgba(16,221,92,0.4)]" />
-            SHUTR LAB
-          </span>
+          <ShutrWordmark className="h-10 w-auto text-paper" />
         </header>
 
         <section className="mb-12">
@@ -62,11 +61,16 @@ export default async function Home() {
         </section>
 
         <div className="mb-14 flex flex-wrap items-center justify-between gap-5 rounded-2xl border border-line bg-surface p-7">
-          <div className="text-xs font-semibold uppercase tracking-wider text-muted leading-7">
-            <div>Download — macOS</div>
-            <div>
-              <span className="text-paper font-bold">{version}</span> &middot;{" "}
-              {sizeMb} &middot; Universal
+          <div className="flex items-center gap-4">
+            <div className="grid size-14 place-items-center rounded-xl bg-bg ring-1 ring-line shrink-0">
+              <ShutrMark className="size-9 text-paper" />
+            </div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted leading-7">
+              <div>Download — macOS</div>
+              <div>
+                <span className="text-paper font-bold">{version}</span> &middot;{" "}
+                {sizeMb} &middot; Universal
+              </div>
             </div>
           </div>
 
