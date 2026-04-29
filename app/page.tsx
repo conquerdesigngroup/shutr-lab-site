@@ -43,8 +43,8 @@ export default async function Home() {
   return (
     <>
       <main className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 flex-1">
-        <header className="mb-14">
-          <ShutrWordmark className="h-10 w-auto text-paper" />
+        <header className="mb-16">
+          <ShutrWordmark className="h-24 w-auto text-paper" />
         </header>
 
         <section className="mb-12">
