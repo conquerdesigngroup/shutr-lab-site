@@ -21,8 +21,10 @@ async function getLatestRelease(): Promise<Release | null> {
   try {
     const res = await fetch(
       "https://api.github.com/repos/conquerdesigngroup/shutr-lab/releases/latest",
-      // Re-fetch every hour so the page picks up new releases without a redeploy.
-      { next: { revalidate: 60 * 60 } }
+      // Re-fetch every minute. Worst-case staleness after a release is 60s,
+      // even if the explicit deploy-hook trigger from dist/build-dmg.sh misses.
+      // GitHub's API rate limit (60 req/h unauth) is plenty for this.
+      { next: { revalidate: 60 } }
     );
     if (!res.ok) return null;
     return (await res.json()) as Release;
