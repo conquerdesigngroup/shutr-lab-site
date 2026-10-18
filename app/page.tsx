@@ -73,7 +73,7 @@ export default async function Home() {
               <div>Download — macOS</div>
               <div>
                 <span className="text-paper font-bold">{version}</span> &middot;{" "}
-                {sizeMb} &middot; Universal
+                {sizeMb}{" "}&middot; Universal
               </div>
             </div>
           </div>

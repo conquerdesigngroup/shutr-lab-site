@@ -48,7 +48,7 @@ export default function TouchUp() {
               <div>Download — macOS</div>
               <div>
                 <span className="text-paper font-bold">v{version}</span> &middot;{" "}
-                {`${sizeMb} MB`} &middot; Apple Silicon
+                {`${sizeMb} MB`}{" "}&middot; Apple Silicon
               </div>
             </div>
           </div>
