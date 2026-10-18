@@ -1,4 +1,6 @@
-import { DownloadIcon } from "@/app/components/DownloadIcon";
+import Link from "next/link";
+import { DownloadButton } from "@/app/components/DownloadButton";
+import { Section } from "@/app/components/Section";
 import { ShutrWordmark } from "@/app/components/ShutrWordmark";
 import { ShutrMark } from "@/app/components/ShutrMark";
 
@@ -76,21 +78,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <a
-            href={downloadUrl}
-            className="
-              inline-flex items-center gap-2.5 rounded-[10px] border border-accent-dark px-7 py-4
-              text-sm font-extrabold tracking-wide text-[#062612]
-              bg-gradient-to-b from-accent-light via-accent to-accent-dark
-              shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_4px_0_var(--color-accent-shadow),0_12px_24px_rgba(16,221,92,0.25)]
-              transition-transform duration-75
-              hover:-translate-y-px hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_5px_0_var(--color-accent-shadow),0_16px_28px_rgba(16,221,92,0.35)]
-              active:translate-y-0.5 active:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_1px_0_var(--color-accent-shadow),0_4px_8px_rgba(16,221,92,0.2)]
-            "
-          >
-            <DownloadIcon className="size-[18px] shrink-0" />
-            Download for macOS
-          </a>
+          <DownloadButton href={downloadUrl}>Download for macOS</DownloadButton>
         </div>
 
         <Section title="Install">
@@ -161,25 +149,15 @@ export default async function Home() {
           className="underline decoration-line decoration-1 underline-offset-[3px] hover:text-paper hover:decoration-accent"
         >
           All releases
-        </a>
+        </a>{" "}
+        ·{" "}
+        <Link
+          href="/touchup"
+          className="underline decoration-line decoration-1 underline-offset-[3px] hover:text-paper hover:decoration-accent"
+        >
+          Touch-Up
+        </Link>
       </footer>
     </>
-  );
-}
-
-function Section({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="mb-12">
-      <h2 className="mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-muted">
-        {title}
-      </h2>
-      {children}
-    </section>
   );
 }
