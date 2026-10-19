@@ -6,7 +6,7 @@
 // `notarized: false` shows the team the one-time "Open Anyway" steps.
 export const TOUCHUP_RELEASE = {
   version: "0.1.0",
-  url: "https://dx93rbf6l8qxfqgz.public.blob.vercel-storage.com/touchup/0.1.0-signed/SHUTR-Touchup-0.1.0.dmg",
+  url: "https://dx93rbf6l8qxfqgz.public.blob.vercel-storage.com/touchup/0.1.0/SHUTR-Touchup-0.1.0.dmg",
   sizeMb: 71.3,
-  notarized: false,
+  notarized: true,
 };
