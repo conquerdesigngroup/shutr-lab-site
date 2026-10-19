@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AppSwitcher } from "@/app/components/AppSwitcher";
 import { DownloadButton } from "@/app/components/DownloadButton";
 import { Section } from "@/app/components/Section";
 import { ShutrWordmark } from "@/app/components/ShutrWordmark";
 import { ShutrMark } from "@/app/components/ShutrMark";
+import { getShutrLabDownload } from "@/app/lib/shutr-release";
 import { TOUCHUP_RELEASE } from "./release";
 
 export const metadata: Metadata = {
@@ -14,17 +16,23 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function TouchUp() {
+export default async function TouchUp() {
   const { version, url, sizeMb, notarized } = TOUCHUP_RELEASE;
+  const lab = await getShutrLabDownload();
 
   return (
     <>
       <main className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 flex-1">
-        <header className="mb-16">
+        <header className="mb-10">
           <Link href="/" aria-label="SHUTR LAB home">
             <ShutrWordmark className="h-24 w-auto text-paper" />
           </Link>
         </header>
+
+        <AppSwitcher
+          active="touchup"
+          versions={{ lab: lab.version, touchup: `v${version}` }}
+        />
 
         <section className="mb-12">
           <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.05] tracking-tight mb-4">

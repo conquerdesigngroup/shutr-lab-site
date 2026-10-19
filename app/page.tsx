@@ -1,55 +1,26 @@
 import Link from "next/link";
+import { AppSwitcher } from "@/app/components/AppSwitcher";
 import { DownloadButton } from "@/app/components/DownloadButton";
 import { Section } from "@/app/components/Section";
 import { ShutrWordmark } from "@/app/components/ShutrWordmark";
 import { ShutrMark } from "@/app/components/ShutrMark";
-
-interface ReleaseAsset {
-  name: string;
-  size: number;
-  browser_download_url: string;
-}
-
-interface Release {
-  tag_name: string;
-  assets: ReleaseAsset[];
-}
-
-const RELEASES_PAGE =
-  "https://github.com/conquerdesigngroup/shutr-lab/releases";
-const RELEASES_LATEST = `${RELEASES_PAGE}/latest`;
-
-async function getLatestRelease(): Promise<Release | null> {
-  try {
-    const res = await fetch(
-      "https://api.github.com/repos/conquerdesigngroup/shutr-lab/releases/latest",
-      // Re-fetch every minute. Worst-case staleness after a release is 60s,
-      // even if the explicit deploy-hook trigger from dist/build-dmg.sh misses.
-      // GitHub's API rate limit (60 req/h unauth) is plenty for this.
-      { next: { revalidate: 60 } }
-    );
-    if (!res.ok) return null;
-    return (await res.json()) as Release;
-  } catch {
-    return null;
-  }
-}
+import { RELEASES_PAGE, getShutrLabDownload } from "@/app/lib/shutr-release";
+import { TOUCHUP_RELEASE } from "@/app/touchup/release";
 
 export default async function Home() {
-  const release = await getLatestRelease();
-  const dmg = release?.assets.find((a) =>
-    a.name.toLowerCase().endsWith(".dmg")
-  );
-  const version = release?.tag_name ?? "latest";
-  const sizeMb = dmg ? `${(dmg.size / (1024 * 1024)).toFixed(1)} MB` : "~5 MB";
-  const downloadUrl = dmg?.browser_download_url ?? RELEASES_LATEST;
+  const { version, sizeMb, url: downloadUrl } = await getShutrLabDownload();
 
   return (
     <>
       <main className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 flex-1">
-        <header className="mb-16">
+        <header className="mb-10">
           <ShutrWordmark className="h-24 w-auto text-paper" />
         </header>
+
+        <AppSwitcher
+          active="lab"
+          versions={{ lab: version, touchup: `v${TOUCHUP_RELEASE.version}` }}
+        />
 
         <section className="mb-12">
           <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.05] tracking-tight mb-4">
